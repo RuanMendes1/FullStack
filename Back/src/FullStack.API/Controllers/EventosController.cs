@@ -1,5 +1,5 @@
-using FullStack.API.Data;
-using FullStack.API.Models;
+using FullStack.Persistence;
+using FullStack.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FullStack.API.Controllers;
@@ -9,9 +9,9 @@ namespace FullStack.API.Controllers;
 public class EventosController : ControllerBase
 {
 
-    private readonly DataContext _context;
+    private readonly FullStackContext _context;
 
-    public EventosController(DataContext context)
+    public EventosController(FullStackContext context)
     {
         this._context = context;
 
@@ -28,7 +28,7 @@ public class EventosController : ControllerBase
     public Evento GetById(int id)
     {
         return _context.Eventos.FirstOrDefault(
-            evento => evento.EventoId == id
+            evento => evento.Id == id
         );
     }
 
